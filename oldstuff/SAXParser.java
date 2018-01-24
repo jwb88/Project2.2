@@ -14,7 +14,6 @@ public class SAXParser extends DefaultHandler {
 	private boolean stn_flag, date_flag, time_flag = false;
 	private String stn, date, time;
 	private Database db;
-	
 
 	public void parse(String input) {
       try {
@@ -26,8 +25,7 @@ public class SAXParser extends DefaultHandler {
          ex.printStackTrace();
       }
       
-	}
-	
+	}	
 	
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
