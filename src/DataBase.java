@@ -36,8 +36,12 @@ public class DataBase implements Runnable {
 
 			// Als dat niet null is
 			if( nextChunk != null ) {
-				String[] chunk = nextChunk.split(",");		// Dan gebruiken we split om de chunkStr van de data te scheiden
-				String path = "C:/Users/jarib/Desktop/weatherData/" + chunk[0] + ".txt";	// Dit is het pad waar de files worden opgeslagen. chunk[0] is dus het stuk voor de komma, dus de chunkStr
+				// Dan gebruiken we split om de chunkStr van de data te scheiden
+				String[] chunk = nextChunk.split(",");
+				
+				// Dit is het pad waar de files worden opgeslagen. chunk[0] is dus het stuk voor de komma, dus de chunkStr
+				// !!!!!!!! Vergeet dit pad niet te veranderen !!!!!!!!
+				String path = "C:/Users/jarib/Desktop/weatherData/" + chunk[0] + ".txt";
 				
 				// Hier proberen we via een BufferedWriter naar het bestand te schrijven
 				try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
