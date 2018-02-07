@@ -1,22 +1,17 @@
 import java.net.*;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+
 import java.io.*;
 
-/**
- * 1] S E R V E R:
- * 
- * Deze luistert naar de client(generator) en maakt voor elk een nieuwe "dataThread"(Task) aan.
- * Ook wordt hier de BlockingQueue en een "dbThread" voor de DataBase aangemaakt.
- * 
- * TODO : Naar mijn idee hoeft er niks in dit bestand aangepast te worden.
- */
 
 public class Server {
 	
 	// Dit is de BlockingQueue voor de DataBase, met een grootte van 800
 	private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>(800);
-	
+	public static final String path = "/home/pi/glowmation/";	// "C:/Users/jarib/Desktop/weatherData/";
 	
 	
 	public static void main(String[] args) {
@@ -24,6 +19,9 @@ public class Server {
 			// Een Thread voor DataBase, die alles uit de BlockingQueue haalt
 			Thread dbThread = new Thread(new DataBase(queue));
 			dbThread.start();
+			
+			//ExecutorService executor = Executors.newFixedThreadPool(800);
+			
 			
 			// Hier openen we de poort voor de generator + Een id voor de threads
 			ServerSocket server_socket = new ServerSocket(7789);
@@ -34,6 +32,7 @@ public class Server {
 				Socket socket = server_socket.accept();							// Accepteren van de "socket"
 				Thread dataThread = new Thread(new Task(id, socket, queue));	// Aanmaken van de thread voor de "socket"
 				dataThread.start();												// Thread starten
+				//executor.execute(new Task(id, socket, queue));
 				id++;
 			}
 			
