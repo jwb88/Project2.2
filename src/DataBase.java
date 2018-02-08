@@ -25,7 +25,7 @@ public class DataBase implements Runnable {
 				String[] chunk = nextChunk.split(";");
 				
 				if( chunk.length < 2 ) {
-					System.err.println("lukt nie: " + nextChunk);
+					System.err.println("error in: " + nextChunk);
 				} else {
 					try (BufferedWriter bw = new BufferedWriter(new FileWriter(Server.path + chunk[0] + ".txt"))) { // FileWriter 2e arg "true" to append
 						bw.write(chunk[1]);
