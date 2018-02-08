@@ -10,7 +10,7 @@ import java.io.*;
 public class Server {
 	
 	// Dit is de BlockingQueue voor de DataBase, met een grootte van 800
-	private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>(3200);
+	private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>(32000);
 	public static final String path = "/home/pi/glowmation/"; //"C:/Users/jarib/Desktop/weatherData/";
 	
 	
